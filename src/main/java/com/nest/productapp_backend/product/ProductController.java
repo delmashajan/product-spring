@@ -5,7 +5,9 @@ import com.nest.productapp_backend.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 
@@ -16,7 +18,7 @@ public class ProductController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add", consumes = "application/json",produces = "application/json")
-    public String Addproduct(@RequestBody Product p){
+    public Map<String,String> Addproduct(@RequestBody Product p){
 
         System.out.println(p.getProductCode());
         System.out.println(p.getProductName().toString());
@@ -28,7 +30,8 @@ public class ProductController {
         System.out.println(p.getDistributorName().toString());
 
         dao.save(p);
-        return "add product details";
+        HashMap<String,String> map = new HashMap<>();
+        return map;
     }
 
     @CrossOrigin(origins = "*")
